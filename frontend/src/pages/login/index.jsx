@@ -1,21 +1,23 @@
-// LoginForm.js
+
 import { useState } from 'react';
 import { TextField, Button, Typography, Link, Card } from '@mui/material';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleRegisterLinkClick = (e) => {
     e.preventDefault(); 
-    window.location.href = '/';
+    navigate('/');
   }
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('https://real-tan-caterpillar-boot.cyclic.cloud/auth/login', {
+      const response = await axios.post('https://us-central1-revou-fullstack.cloudfunctions.net/week_17_mnajmytsss/auth/login', {
         username,
         password,
       });
@@ -28,7 +30,7 @@ const LoginForm = () => {
         showConfirmButton: false,
         timer: 1500, 
       });
-      window.location.href = '/HomePage';
+      navigate('/homepages'); 
     } catch (error) {
       console.error('Login error:', error.message);
       Swal.fire({

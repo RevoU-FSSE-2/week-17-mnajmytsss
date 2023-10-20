@@ -11,11 +11,11 @@ function App() {
       element: <RegisterForm />
     },
     {
-      path: "/login",
+      path: "/loginform",
       element: <LoginForm />
     },
     {
-      path: "/homepage",
+      path: "/homepages",
       element: <HomePage />
     },
     {

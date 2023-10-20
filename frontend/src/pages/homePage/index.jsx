@@ -13,38 +13,38 @@ const [editModalOpen, setEditModalOpen] = useState(false);
    const [newBook, setNewBook] = useState({ name: '', author: '' });
    const token = localStorage.getItem('token');
 
-      const fetchBooks = async () => {
-        try {
-          const response = await axios.get('https://real-tan-caterpillar-boot.cyclic.cloud/api/v1/books', {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+   const fetchBooks = async () => {
+    try {
+            const response = await axios.get('https://us-central1-revou-fullstack.cloudfunctions.net/week_17_mnajmytsss/api/v1/books', {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
             const booksData = response.data.data;
-      
-          if (Array.isArray(booksData)) {
-            const formattedBooks = booksData.map(book => ({
-              id: book.id || book._id,
-              name: book.name,
-              author: book.author,
-            }));
-                  setBooks(formattedBooks);
-          } else {
-            console.error('Error: API response does not contain an array of books', response);
-          }
-        } catch (error) {
-            console.error("Error creating book:", error);
-            Swal.fire({
-              icon: "error",
-              title: `Oops...`,
-              html: `<b>[CODE] ${error.code}</b><br>Something went wrong!`,
-            });
-        }
-      };
-      
-useEffect(() => {
-    fetchBooks();
-  }, []); 
+
+      if (Array.isArray(booksData)) {
+        const formattedBooks = booksData.map(book => ({
+          id: book.id || book._id,
+          name: book.name,
+          author: book.author,
+        }));
+        setBooks(formattedBooks);
+      } else {
+        console.error('Error: API response does not contain an array of books', response);
+      }
+    } catch (error) {
+      console.error("Error creating book:", error);
+      Swal.fire({
+        icon: "error",
+        title: `Oops...`,
+        html: `<b>[CODE] ${error.code}</b><br>Something went wrong!`,
+      });
+    }
+  };
+
+      useEffect(() => {
+        fetchBooks();
+      }, []);
 
   const handleEdit = (id) => {
     const bookToEdit = books.find((book) => book.id === id);
@@ -61,7 +61,7 @@ useEffect(() => {
       const token = localStorage.getItem('token');
   
       await axios.put(
-        `https://real-tan-caterpillar-boot.cyclic.cloud/api/v1/books/${selectedBook.id}`,
+        `https://us-central1-revou-fullstack.cloudfunctions.net/week_17_mnajmytsss/api/v1/books/${selectedBook.id}`,
         {
           name: selectedBook.name,
           author: selectedBook.author,
@@ -95,7 +95,7 @@ useEffect(() => {
   const handleDelete = async (id) => {
     try {
 
-      await axios.delete(`https://real-tan-caterpillar-boot.cyclic.cloud/api/v1/books/${id}`, {
+      await axios.delete(`https://us-central1-revou-fullstack.cloudfunctions.net/week_17_mnajmytsss/api/v1/books/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -127,7 +127,7 @@ useEffect(() => {
 
   const handleAddBook = async () => {
     try {
-      await axios.post('https://real-tan-caterpillar-boot.cyclic.cloud/api/v1/books', {
+      await axios.post('https://us-central1-revou-fullstack.cloudfunctions.net/week_17_mnajmytsss/api/v1/books', {
         name: newBook.name, 
         author: newBook.author,  
       },
@@ -160,7 +160,7 @@ useEffect(() => {
       showConfirmButton: false,
       timer: 1500, 
     }); 
-    history.push('/LoginForm'); 
+    history.push('/loginform'); 
   };
 
   return (
@@ -172,7 +172,7 @@ useEffect(() => {
         <Button variant="contained" color="primary" onClick={() => setAddModalOpen(true)} style={{ marginBottom: '20px' }}>
   Add Book
 </Button>
-<Button href='/login' style={{ marginBottom: '20px' }} onClick={handleLogout}>
+<Button href='/loginform' style={{ marginBottom: '20px' }} onClick={handleLogout}>
   Logout
 </Button>
         <Modal open={addModalOpen} onClose={() => setAddModalOpen(false)}>

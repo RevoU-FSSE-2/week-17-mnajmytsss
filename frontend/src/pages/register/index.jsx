@@ -2,20 +2,22 @@ import { useState } from 'react';
 import { TextField, Button, Typography, Link, Select, MenuItem, FormControl, InputLabel, Card } from '@mui/material';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
+  const navigate = useNavigate();
 
   const handleLoginLinkClick = (e) => {
     e.preventDefault(); 
-    window.location.href = '/login';
+    navigate('/loginform');
   }
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post('https://real-tan-caterpillar-boot.cyclic.cloud/auth/register', {
+      const response = await axios.post('https://us-central1-revou-fullstack.cloudfunctions.net/week_17_mnajmytsss/auth/register', {
         username,
         password,
         role,
@@ -28,7 +30,7 @@ const RegisterForm = () => {
       });
 
       console.log('Registration successful:', response.data);
-      window.location.href = '/login'
+      navigate('/loginform');
     } catch (error) {
 
       if (error.response && error.response.status === 400 && error.response.data.message) {
@@ -83,7 +85,7 @@ const RegisterForm = () => {
           onChange={(e) => setRole(e.target.value)}
           label="Role"
         >
-          <MenuItem value="author">Author</MenuItem>
+          <MenuItem value="user">User</MenuItem>
           <MenuItem value="admin">Admin</MenuItem>
         </Select>
       </FormControl>
