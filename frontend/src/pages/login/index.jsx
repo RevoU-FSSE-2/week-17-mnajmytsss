@@ -33,7 +33,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Card style={{ textAlign: 'center', margin: '20px', padding: '30px' }}>
+    <Card style={{ textAlign: 'center', margin: '20px auto', padding: '30px', maxWidth: '400px' }}>
       <Typography  variant="h4" gutterBottom>
         Login
       </Typography>
