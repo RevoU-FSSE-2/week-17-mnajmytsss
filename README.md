@@ -1,9 +1,21 @@
 
-# Book API Documentation
+# Book API Documentation Firebase Deployment
 
 This API provides endpoints for managing books. There are two clients (Client X and Client Y) with different access levels.
 
-![Local Image](./assets/2.png)
+![Local Image](./backend/assets/2.png)
+
+## Overview
+
+Based on my previous assignment about Frontend and Backend, and integrate those assignment together to build a full end to end product (Book), then deploy my full product to my preffered cloud provider
+
+# Prerequisites
+
+Before we begin, make sure we have the following installed:
+
+- Frontend project with React.js, Vite
+- Backend project with Node.js, Express js
+- Firebase CLI: Install with `npm install -g firebase-tools`
 
 ## Table of Contents
 
@@ -95,7 +107,46 @@ XSS protection is implemented both on the server and client side to prevent cros
 Feel free to customize this template according to your specific needs and add more details as required.
 
 
-![Local Image](./assets/1.png)
+![Local Image](./backend/assets/1.png)
+
+## Deployment
+
+### 1. Firebase Project Setup
+
+1. Go to the [Firebase Console](https://console.firebase.google.com/).
+2. Click on "Add Project" and follow the instructions to create a new project.
+3. Once the project is created, note the Project ID.
+
+### 2. Configure Firebase
+
+1. Navigate to the `<project name>` directory: `cd <project name>`.
+2. Install dependencies: `pnpm/npm/yarn install`.
+3. Authenticate with Firebase: `firebase login`.
+4. Initialize Firebase project: `firebase init`.
+   - Choose functions.
+   - Associate the project with the Firebase project you created.
+   - Select JavaScript or TypeScript based on your project.
+   - Configure other options as needed.
+
+### 3. Deploy Backend
+
+Run the following commands to deploy the Firebase Functions:
+
+```bash
+cd backend
+firebase deploy --only functions
+```
+
+### 4. Deploy Frontend
+
+Run the following commands to deploy the Firebase Functions:
+
+```bash
+cd frontend
+build the project
+firebase deploy --only hosting:
+```
+
 
 
 [Try me!!](https://week-17-mnajmytsss.web.app/)
